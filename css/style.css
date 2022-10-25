@@ -3,6 +3,7 @@ body{
     color: white;
 }
 #errores{
+    visibility: hidden;
     background-color: red;
     width: 30%;
     

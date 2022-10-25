@@ -1,6 +1,7 @@
 window.onload = inicio;
 function inicio() {
     document.formulario.onsubmit = validForm;
+    document.formulario.codpostal.onblur = cambioCodPos;
 }
 function validForm() {
     //----llamando todas las funciones abajo y si se cumplen todas, enviar el formulario --> valido == true
@@ -131,7 +132,7 @@ function validar_localidad() {
 function validar_codPostal() {
     let valido = true; 
     let codpostal = document.formulario.codpostal.value.trim();
-    let expregcodpos =/^(0?[1-9]|[1-4]\d|5[012])\d{3}$/i
+    let expregcodpos =/^([1-4]\d{4}|5[0-2]\d{3}|0?100\d|0?10[1-9]\d|0?1[1-9]\d{2}|0?[2-9]\d{3})$/i
     if (!expregcodpos.test(codpostal)) { 
         document.formulario.error_codpos.value= "Error, codigo postal no valido";
         document.formulario.error_codpos.style= "visibility:visible"; 
@@ -140,3 +141,24 @@ function validar_codPostal() {
 return valido;
 }
 //------------------------------fin dani
+function cambioCodPos() {
+    if (validar_codPostal()) {
+    
+        let codigoPostal = document.formulario.codpostal.value;
+        let initial;
+        if (codigoPostal.length == 4) {
+            initial = parseInt(codigoPostal.substring(0, 1) - 1);
+        } else {
+            initial = parseInt(codigoPostal.substring(0, 2) - 1);
+        }
+        let provincias = ['Alava', 'Albacete', 'Alicante', 'Almería', 'Avila', 'Badajoz', 'Islas Baleares', 'Barcelona', 'Burgos', 'Cáceres',
+            'Cádiz', 'Castellón', 'Ciudad Real', 'Córdoba', 'La Coruña', 'Cuenca', 'Gerona', 'Granada', 'Guadalajara',
+            'Guipúzcoa', 'Huelva', 'Huesca', 'Jaén', 'León', 'Lérida', 'La Rioja', 'Lugo', 'Madrid', 'Málaga', 'Murcia', 'Navarra',
+            'Orense', 'Asturias', 'Palencia', 'Las Palmas', 'Pontevedra', 'Salamanca', 'Santa Cruz de Tenerife', 'Cantabria', 'Segovia', 'Sevilla', 'Soria', 'Tarragona',
+            'Teruel', 'Toledo', 'Valencia', 'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza', 'Ceuta', 'Melilla'];
+
+        document.formulario.provincia.value = provincias[initial];
+        //console.log(" es valido");   
+    }
+
+}
