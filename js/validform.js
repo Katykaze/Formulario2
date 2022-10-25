@@ -120,11 +120,8 @@ function validarChecBox() {
             if (check[i].checked) {
                 //console.log("----" + i);
                 counter++;
-            }
-            
-        }
-
-        
+            }           
+        }     
     }
     if (counter < 1) {
         document.formulario.error_sectores.value = "Error, debe elegir al menos una opcion";
