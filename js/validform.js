@@ -22,7 +22,7 @@ function validarRazon() {
     let razonF = document.formulario.nombre.value;
     let regExp = /^[a-zA-ZñÑ][a-zA-ZñÑºª\-\.0-9 ]*[a-zA-ZñÑ\.0-9]$/;
     if (!regExp.test(razonF)) {
-        document.formulario.error_razon.value = "Error en razon social";
+        document.formulario.error_razon.value = "Error. Debe empezar por una letra y terminar por letra dígito o punto. En su interior puede contener letras, dígitos y caracteres º ª - .";
         document.formulario.error_razon.style = "visibility: visible";
         valido = false;
     }
@@ -34,7 +34,7 @@ function validarCodigoEmpresa() {
     let valorDelCampo = document.formulario.codempresa.value;
     let regExp = /[a-zA-ZñÑ0-9]{5,10}/;
     if (!regExp.test(valorDelCampo)) {
-        document.formulario.error_codempresa.value = "Error en código de empresa";
+        document.formulario.error_codempresa.value = "Error. Debe contener letra o dígitos.Tamaño comprendido entre 5 y 10";
         document.formulario.error_codempresa.style = "visibility: visible";
         valido = false;
     }
