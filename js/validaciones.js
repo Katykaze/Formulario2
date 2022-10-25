@@ -112,6 +112,62 @@ function nif_Cif(cadena){
 //funcion codigos de control -----------------> JHON
 
 //funcion calculoIbanEspaña -------------------------> cris
+function calculoIBANEspanya(nCuenta){
+ 
+  if(isNaN(nCuenta)){
+      return false;
+  }
+  //Lo separo y le pongo el 142800 al final, opero con él
+  let Numeros = nCuenta.split("");
+  Numeros.push(142800);
+  let nControl = BigInt(Numeros.join(""));
+  nControl = nControl%BigInt(97);
+  nControl = BigInt(98)-nControl;
+  //Compruebo el resultado y lo devuelvo de forma correcta
+  if(nControl<10){
+      nControl="ES0"+nControl+nCuenta;
+      return nControl;
+  }else{
+      nControl="ES"+nControl+nCuenta;
+      return nControl;
+  }
+}
+
+
 
 //funcion comprobarIban-----------------------------> cris 
+function comprobarIBAN(iban){
 
+  
+  iban = iban.toUpperCase();
+
+  let pattern = /([A-Za-z]{2}\d{2}[A-Za-z\d]{2,30})/;
+  if (!pattern.test(iban)){
+      return false;
+  }
+
+  iban = iban.split("");
+
+  for (let i = 0; i < 4; i++){
+      iban.push(iban.shift());
+  }
+
+  for (let i = 0; i < iban.length; i++){
+      if (64 < iban[i].charCodeAt() && iban[i].charCodeAt() < 91){
+          let transformedLetter = iban[i].charCodeAt() - 55;
+          iban[i] = transformedLetter;
+      } else {
+          iban[i] = parseInt(iban[i]);
+      }
+  } 
+  
+  let valid = false;
+  if (iban.length > 18) {
+  const bigIban = BigInt(iban.join(""));
+  if ( bigIban % 97n == 1n ) {
+      valid = true;
+  }
+  }
+  
+  return valid;
+}
