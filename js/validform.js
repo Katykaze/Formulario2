@@ -1,7 +1,7 @@
 window.onload = inicio;
 function inicio() {
     document.formulario.onsubmit = validForm;
-    document.formulario.codpostal.onblur = cambioCodPos;
+    document.formulario.codpostal.oninput = cambioCodPos;
 }
 function validForm() {
     //----llamando todas las funciones abajo y si se cumplen todas, enviar el formulario --> valido == true
@@ -14,9 +14,9 @@ function validForm() {
     valido = botonSelect() && valido;
     valido = validarDesplegable() && valido;
     valido = validNif_Cif() && valido;
-    valido = validar_direccion() && valido; 
-    valido = validar_localidad() && valido; 
-    valido = validar_codPostal() && valido; 
+    valido = validar_direccion() && valido;
+    valido = validar_localidad() && valido;
+    valido = validar_codPostal() && valido;
 
     return valido;
 }
@@ -95,7 +95,7 @@ function validarDesplegable() {
             counter++;
         }
     }
-    if (counter < 2){
+    if (counter < 2) {
         document.formulario.error_comunidad.value = "Error,debes elegir al menos dos comunidades";
         document.formulario.error_comunidad.style = "visibility: visible";
         valido = false;
@@ -106,44 +106,46 @@ function validarDesplegable() {
 //----------------------fin parte Katy------------------------------------------------
 //--------------------dani
 
- 
+
 function validar_direccion() {
-    let valido = true; 
-    let dir= document.formulario.direccion.value.trim(); 
+    let valido = true;
+    let dir = document.formulario.direccion.value.trim();
     let expregdir = /^[a-z](\w| |ª|º|\/|\.|\-)+\w$/i;
     if (!expregdir.test(dir)) {
-        document.formulario.error_direccion.value = "Error, la direccion está mal escrita"; 
+        document.formulario.error_direccion.value = "Error, la direccion está mal escrita";
         document.formulario.error_direccion.style = "visibility: visible";
     }
     return valido;
 }
 //validar localidad
 function validar_localidad() {
-    let valido = true; 
+    let valido = true;
     var expregloc = /^[a-z]([a-z]|\s)+[a-z]$/i;
     let localidad = document.formulario.localidad.value.trim();
     if (!expregloc.test(localidad)) {
-    document.formulario.error_localidad.value = "Error, la localidad está mal escrita";
-    document.formulario.error_localidad.style = "visibility: visible";
+        document.formulario.error_localidad.value = "Error, la localidad está mal escrita";
+        document.formulario.error_localidad.style = "visibility: visible";
     }
     return valido;
 }
 //validar codigo postal
 function validar_codPostal() {
-    let valido = true; 
+    let valido = true;
     let codpostal = document.formulario.codpostal.value.trim();
-    let expregcodpos =/^([1-4]\d{4}|5[0-2]\d{3}|0?100\d|0?10[1-9]\d|0?1[1-9]\d{2}|0?[2-9]\d{3})$/i
-    if (!expregcodpos.test(codpostal)) { 
-        document.formulario.error_codpos.value= "Error, codigo postal no valido";
-        document.formulario.error_codpos.style= "visibility:visible"; 
+    let expregcodpos = /^([1-4]\d{4}|5[0-2]\d{3}|0?100\d|0?10[1-9]\d|0?1[1-9]\d{2}|0?[2-9]\d{3})$/i
+    if (!expregcodpos.test(codpostal)) {
+        document.formulario.error_codpos.value = "Error, codigo postal no valido";
+        document.formulario.error_codpos.style = "visibility:visible";
         valido = false;
-}
-return valido;
+    }else{
+        document.formulario.error_codpos.style = "visibility:hidden";
+    }
+    return valido;
 }
 //------------------------------fin dani
 function cambioCodPos() {
     if (validar_codPostal()) {
-    
+
         let codigoPostal = document.formulario.codpostal.value;
         let initial;
         if (codigoPostal.length == 4) {
