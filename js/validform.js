@@ -104,10 +104,12 @@ function validarDesplegable() {
 }
 //----------------------fin parte Katy------------------------------------------------
 //--------------------dani
+
+ 
 function validar_direccion() {
     let valido = true; 
     let dir= document.formulario.direccion.value.trim(); 
-    let expregdir = /^[a-z](\w|ª|º|\/|\.|\-)+\w$/i;
+    let expregdir = /^[a-z](\w| |ª|º|\/|\.|\-)+\w$/i;
     if (!expregdir.test(dir)) {
         document.formulario.error_direccion.value = "Error, la direccion está mal escrita"; 
         document.formulario.error_direccion.style = "visibility: visible";
