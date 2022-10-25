@@ -107,6 +107,7 @@ function nif_Cif(cadena){
         return c1;
     }  
 }
+
 //console.log(nif_Cif("V31261"));
 //funcion codigos de control -----------------> JHON
 

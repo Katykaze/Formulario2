@@ -2,6 +2,7 @@ window.onload = inicio;
 function inicio() {
     document.formulario.onsubmit = validForm;
     document.formulario.codpostal.oninput = cambioCodPos;
+    document.formulario.onreset = limpiar;
 }
 function validForm() {
     //----llamando todas las funciones abajo y si se cumplen todas, enviar el formulario --> valido == true
@@ -197,4 +198,7 @@ function cambioCodPos() {
         //console.log(" es valido");   
     }
 
+}
+function limpiar(){
+   window.location.reload();
 }
