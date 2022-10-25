@@ -103,6 +103,7 @@ function validarDesplegable() {
 
 }
 //----------------------fin parte Katy------------------------------------------------
+//--------------------dani
 function validar_direccion() {
     let valido = true; 
     let dir= document.formulario.direccion.value.trim(); 
@@ -136,3 +137,4 @@ function validar_codPostal() {
 }
 return valido;
 }
+//------------------------------fin dani
