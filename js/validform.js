@@ -17,6 +17,7 @@ function validForm() {
     valido = validar_direccion() && valido;
     valido = validar_localidad() && valido;
     valido = validar_codPostal() && valido;
+    valido = validarChecBox() && valido;
 
     return valido;
 }
@@ -29,7 +30,7 @@ function validarRazon() {
         document.formulario.error_razon.value = "Error. Debe empezar por una letra y terminar por letra dígito o punto. En su interior puede contener letras, dígitos y caracteres º ª - .";
         document.formulario.error_razon.style = "visibility: visible";
         valido = false;
-    }else{
+    } else {
         document.formulario.error_razon.style = "visibility: hidden";
     }
     return valido;
@@ -44,7 +45,7 @@ function validarCodigoEmpresa() {
         document.formulario.error_codempresa.style = "visibility: visible";
         valido = false;
     }
-    else{
+    else {
         document.formulario.error_codempresa.style = "visibility: hidden";
     }
     return valido;
@@ -58,7 +59,7 @@ function validNif_Cif() {
         document.formulario.error_nifcif.value = "Error,el nif  o cif no es correcto";
         document.formulario.error_nifcif.style = "visibility: visible";
         valido = false;
-    }else{
+    } else {
         document.formulario.error_nifcif.style = "visibility: hidden";
     }
     return valido;
@@ -103,11 +104,36 @@ function validarDesplegable() {
         document.formulario.error_comunidad.value = "Error,debes elegir al menos dos comunidades";
         document.formulario.error_comunidad.style = "visibility: visible";
         valido = false;
-    }else{
+    } else {
         document.formulario.error_comunidad.style = "visibility: hidden";
     }
     return valido;
 
+}
+function validarChecBox() {
+    let valido = true;
+    let check = document.formulario.sectores_economicos.elements;
+    console.log(check);
+    let counter = 0;
+    for (let i = 0; i < check.length; i++) {
+        if(check[i].type == "checkbox"){
+            if (check[i].checked) {
+                //console.log("----" + i);
+                counter++;
+            }
+            
+        }
+
+        
+    }
+    if (counter < 1) {
+        document.formulario.error_sectores.value = "Error, debe elegir al menos una opcion";
+        document.formulario.error_sectores.style = "visibility: visible";
+        valido = false;
+    } else {
+        document.formulario.error_sectores.style = "visibility: hidden";
+    }
+    return valido;
 }
 //----------------------fin parte Katy------------------------------------------------
 //--------------------dani
@@ -121,7 +147,7 @@ function validar_direccion() {
         document.formulario.error_direccion.value = "Error, la direccion está mal escrita";
         document.formulario.error_direccion.style = "visibility: visible";
     }
-    else{
+    else {
         document.formulario.error_direccion.style = "visibility: hidden";
     }
     return valido;
@@ -134,7 +160,7 @@ function validar_localidad() {
     if (!expregloc.test(localidad)) {
         document.formulario.error_localidad.value = "Error, la localidad está mal escrita";
         document.formulario.error_localidad.style = "visibility: visible";
-    }else{
+    } else {
         document.formulario.error_localidad.style = "visibility: hidden";
     }
     return valido;
