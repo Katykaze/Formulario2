@@ -29,6 +29,8 @@ function validarRazon() {
         document.formulario.error_razon.value = "Error. Debe empezar por una letra y terminar por letra dígito o punto. En su interior puede contener letras, dígitos y caracteres º ª - .";
         document.formulario.error_razon.style = "visibility: visible";
         valido = false;
+    }else{
+        document.formulario.error_razon.style = "visibility: hidden";
     }
     return valido;
 }
@@ -42,6 +44,9 @@ function validarCodigoEmpresa() {
         document.formulario.error_codempresa.style = "visibility: visible";
         valido = false;
     }
+    else{
+        document.formulario.error_codempresa.style = "visibility: hidden";
+    }
     return valido;
 }
 //validacion de si nifcif es correcto
@@ -53,32 +58,31 @@ function validNif_Cif() {
         document.formulario.error_nifcif.value = "Error,el nif  o cif no es correcto";
         document.formulario.error_nifcif.style = "visibility: visible";
         valido = false;
+    }else{
+        document.formulario.error_nifcif.style = "visibility: hidden";
     }
     return valido;
 }
 //console.log(validNif_Cif("53909901V"));
-////validar los radios: una funcion para validarlos todos los tipos radios y la funcion de iterateOverRadioGroups para recorrer y hacer el .checked
-function iterateOverRadioGroups(listOfRadioButtons) {
-    for (var i = 0; i < listOfRadioButtons.length; i++) {
-        if (listOfRadioButtons[i].checked) {
-            return true;
-        }
-    }
-    return false;
-}
 function botonSelect() {
     let valido = true;
-    let radio = document.formulario.tipopersona;//nos devuelve un nodo con todos los tipopersona
-    let tipo = document.formulario.tipo;//nos devuelve un nodo con todos los tipos
-    if (!iterateOverRadioGroups(radio)) {
-        document.formulario.error_tipo.value = "Error,debes elegir un tipo de persona";
-        document.formulario.error_tipo.style = "visibility: visible";
-        valido = false;
-    }
-    if (!iterateOverRadioGroups(tipo)) {
+    let radio = document.formulario.tipopersona.value;//nos devuelve un nodo con todos los tipopersona
+    let tipo = document.formulario.tipo.value;//nos devuelve un nodo con todos los tipos
+    if (tipo == "") {
+
         document.formulario.error_tipoemp.value = "Error,debes elegir un tipo de empresa";
         document.formulario.error_tipoemp.style = "visibility: visible";
         valido = false;
+
+    } else {
+        document.formulario.error_tipoemp.style = "visibility: hidden";
+    }
+    if (radio == "") {
+        document.formulario.error_tipo.value = "Error,debes elegir un tipo de empresa";
+        document.formulario.error_tipo.style = "visibility: visible";
+        valido = false;
+    } else {
+        document.formulario.error_tipo.style = "visibility: hidden";
     }
     return valido;
 }
@@ -99,6 +103,8 @@ function validarDesplegable() {
         document.formulario.error_comunidad.value = "Error,debes elegir al menos dos comunidades";
         document.formulario.error_comunidad.style = "visibility: visible";
         valido = false;
+    }else{
+        document.formulario.error_comunidad.style = "visibility: hidden";
     }
     return valido;
 
@@ -115,6 +121,9 @@ function validar_direccion() {
         document.formulario.error_direccion.value = "Error, la direccion está mal escrita";
         document.formulario.error_direccion.style = "visibility: visible";
     }
+    else{
+        document.formulario.error_direccion.style = "visibility: hidden";
+    }
     return valido;
 }
 //validar localidad
@@ -125,6 +134,8 @@ function validar_localidad() {
     if (!expregloc.test(localidad)) {
         document.formulario.error_localidad.value = "Error, la localidad está mal escrita";
         document.formulario.error_localidad.style = "visibility: visible";
+    }else{
+        document.formulario.error_localidad.style = "visibility: hidden";
     }
     return valido;
 }
@@ -137,7 +148,7 @@ function validar_codPostal() {
         document.formulario.error_codpos.value = "Error, codigo postal no valido";
         document.formulario.error_codpos.style = "visibility:visible";
         valido = false;
-    }else{
+    } else {
         document.formulario.error_codpos.style = "visibility:hidden";
     }
     return valido;
