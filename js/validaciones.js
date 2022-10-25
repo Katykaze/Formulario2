@@ -112,4 +112,5 @@ function nif_Cif(cadena){
 
 //funcion calculoIbanEspaña -------------------------> cris
 
-//funcion comprobarIban-----------------------------> cris
+//funcion comprobarIban-----------------------------> cris 
+

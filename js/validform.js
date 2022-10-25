@@ -108,7 +108,7 @@ function validar_direccion() {
     let valido = true; 
     let dir= document.formulario.direccion.value.trim(); 
     let expregdir = /^[a-z](\w|ª|º|\/|\.|\-)+\w$/i;
-    if (!expregdireccion.test(dir)) {
+    if (!expregdir.test(dir)) {
         document.formulario.error_direccion.value = "Error, la direccion está mal escrita"; 
         document.formulario.error_direccion.style = "visibility: visible";
     }
@@ -119,7 +119,7 @@ function validar_localidad() {
     let valido = true; 
     var expregloc = /^[a-z]([a-z]|\s)+[a-z]$/i;
     let localidad = document.formulario.localidad.value.trim();
-    if (expregloc.test(localidad)) {
+    if (!expregloc.test(localidad)) {
     document.formulario.error_localidad.value = "Error, la localidad está mal escrita";
     document.formulario.error_localidad.style = "visibility: visible";
     }
@@ -128,9 +128,9 @@ function validar_localidad() {
 //validar codigo postal
 function validar_codPostal() {
     let valido = true; 
-    let codPostal = document.formulario.codPostal.value.trim();
+    let codpostal = document.formulario.codpostal.value.trim();
     let expregcodpos =/^(0?[1-9]|[1-4]\d|5[012])\d{3}$/i
-    if (!expregcodpos.test(codPostal)) { 
+    if (!expregcodpos.test(codpostal)) { 
         document.formulario.error_codpos.value= "Error, codigo postal no valido";
         document.formulario.error_codpos.style= "visibility:visible"; 
         valido = false;
