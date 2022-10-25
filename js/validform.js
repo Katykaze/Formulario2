@@ -13,6 +13,9 @@ function validForm() {
     valido = botonSelect() && valido;
     valido = validarDesplegable() && valido;
     valido = validNif_Cif() && valido;
+    valido = validar_direccion() && valido; 
+    valido = validar_localidad() && valido; 
+    valido = validar_codPostal() && valido; 
 
     return valido;
 }
