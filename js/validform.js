@@ -18,6 +18,12 @@ function validForm() {
     valido = validar_direccion() && valido;
     valido = validar_localidad() && valido;
     valido = validar_codPostal() && valido;
+    /*Jhon estuvo aqui */
+    valido = validarCodControl() && valido;
+    valido = validarNumCuenta() && valido;
+    valido = validarNumTrabajadores() && valido;
+    valido = validarNumFabrica() && valido;
+    /*Hasta aqui estuvo Jhon*/
     valido = validarChecBox() && valido;
 
     return valido;
@@ -199,6 +205,63 @@ function cambioCodPos() {
     }
 
 }
+//----------------------    JHON    ----------------------------- //
+function validarCodControl() {
+    let valido = true;  
+    let codControl = document.formulario.codcontrol.value;
+    let expreCodControl = /^\d{2}$/;
+    if (!expreCodControl.test(codControl)) {
+        document.formulario.error_codcon.value = "Error, El código de control debe ser numérico con dos dígitos.";
+        document.formulario.error_codcon.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_codcon.style = "visibility:hidden";
+    }
+    return valido;
+}
+
+function validarNumCuenta(){
+    let valido = true;  
+    let numCuenta = document.formulario.numcuenta.value;
+    let expreNumCuenta = /^\d{10}$/;
+    if (!expreNumCuenta.test(numCuenta)) {
+        document.formulario.error_numcu.value = "Error, El número de cuenta ha de ser numérico con 10 dígitos.";
+        document.formulario.error_numcu.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_numcu.style = "visibility:hidden";
+    }
+    return valido;
+}
+
+function validarNumTrabajadores(){
+    let valido = true;  
+    let numTrabajadores = document.formulario.numtrabajadores.value;
+    let expreNumTrabajadores = /^((0{0,4}4[5-9])|(0{0,4}[5-9]\d)|(0{0,3}[1-9]\d{2})|(0{0,2}[1-9]\d{3})|(0?[1-9]\d{4})|([1-9]\d{5}))$/;
+    if (!expreNumTrabajadores.test(numTrabajadores)) {
+        document.formulario.error_numtrab.value = "Error, El valor mínimo va a ser 45 y puede tener hasta seis dígitos.";
+        document.formulario.error_numtrab.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_numtrab.style = "visibility:hidden";
+    }
+    return valido;
+}
+
+function validarNumFabrica(){
+    let valido = true;  
+    let numFabrica = document.formulario.numfabrica.value;
+    let expreNumFabrica = /^((0{0,3}[2-9])|(0{0,2}[1-9]\d)|(0{0,2}[1-9]\d{2})|(0?[1-9]\d{2})|([1-9]\d{3}))$/;
+    if (!expreNumFabrica.test(numFabrica)) {
+        document.formulario.error_numfab.value = "Error, El valor mínimo va a ser 2 y tener hasta cuatro dígitos.";
+        document.formulario.error_numfab.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_numfab.style = "visibility:hidden";
+    }
+    return valido;
+}
+//----------------------    FIN JHON    ------------------------- //
 function limpiar(){
    window.location.reload();
 }
