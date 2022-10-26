@@ -110,6 +110,72 @@ function nif_Cif(cadena){
 
 //console.log(nif_Cif("V31261"));
 //funcion codigos de control -----------------> JHON
+function codigosControl(codBanco, numSucursal, numCuenta) {
+    
+    if (codBanco.length == 4 && numSucursal.length == 4 && numCuenta.length == 10 && isNaN(codBanco) == false && isNaN(numSucursal) == false && isNaN(numCuenta) == false) {
+        // console.log(codBanco);
+        // console.log(isNaN(codBanco));
+        //-----------------Calcular numero1----------------------------------------------
+        let numero1 = 0; //tipo number
+        numero1 = parseInt(codBanco[0]) * 4 + parseInt(codBanco[1]) * 8 + parseInt(codBanco[2]) * 5 + parseInt(codBanco[3]) * 10;
+        //console.log(numero1);
+        //-----------------Calcular numero2----------------------------------------------
+        let numero2 = 0;
+        numero2 = parseInt(numSucursal[0]) * 9 + parseInt(numSucursal[1]) * 7 + parseInt(numSucursal[2]) * 3 + parseInt(numSucursal[3]) * 6;
+        //console.log(numero2);
+        //Suma=numero1+numero2
+        let sumaN1N2 = numero1 + numero2;
+        //console.log(sumaN1N2);
+        let resto1 = parseInt(sumaN1N2) % 11;
+        //console.log("resto1= " + resto1); // correcto
+        let valorObtenido1;
+
+        valorObtenido1 = 11 - resto1;
+
+        //console.log("valorObtenido1= " + valorObtenido1); // Correcto hasta aqui
+        let carControl1;
+
+        //console.log("length de valorObtenido1: " + valorObtenido1.toString().length);
+
+        //Muy importante convertir a String si se aplica .length
+        if (valorObtenido1.toString().length == 1) {
+            carControl1 = valorObtenido1;
+        } else {
+            if (valorObtenido1 == 10) {
+                carControl1 = 1;
+            }
+            if (valorObtenido1 == 11) {
+                carControl1 = 0;
+            }
+        }
+
+        //console.log("carControl1= " + carControl1);
+        //-----------------Calcular numero3----------------------------------------------
+        let numero3 = 0;
+        numero3 = parseInt(numCuenta[0]) * 1 + parseInt(numCuenta[1]) * 2 + parseInt(numCuenta[2]) * 4 + parseInt(numCuenta[3]) * 8 + parseInt(numCuenta[4]) * 5 + parseInt(numCuenta[5]) * 10 + parseInt(numCuenta[6]) * 9 + parseInt(numCuenta[7]) * 7 + parseInt(numCuenta[8]) * 3 + parseInt(numCuenta[9]) * 6;
+        let resto2 = numero3 % 11;
+        //console.log("resto2= " + resto2);
+        let valorObtenido2;
+        valorObtenido2 = 11 - resto2;
+        //console.log("valorObtenido2= " + valorObtenido2);
+
+        let carControl2;
+        if (valorObtenido2.toString().length == 1) {
+            carControl2 = valorObtenido2;
+        } else {
+            if (valorObtenido2 == 10) {
+                carControl2 = 1;
+            }
+            if (valorObtenido1 == 11) {
+                carControl2 = 0;
+            }
+        }
+
+        //console.log("carControl2= "+carControl2);
+        let codControl = "" + carControl1 + carControl2; // concateno con "" sino se suman los digitos de control
+        return codControl;
+    }
+}
 
 //funcion calculoIbanEspaña -------------------------> cris
 function calculoIBANEspanya(nCuenta){
