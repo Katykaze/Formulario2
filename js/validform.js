@@ -209,9 +209,12 @@ function cambioCodPos() {
 function validarCodControl() {
     let valido = true;  
     let codControl = document.formulario.codcontrol.value;
+    let codBanco = document.formulario.codbanco.value;
+    let numCuenta = document.formulario.numcuenta.value;
+    let numSucursal = document.formulario.codoficina.value;
     let expreCodControl = /^\d{2}$/;
-    if (!expreCodControl.test(codControl)) {
-        document.formulario.error_codcon.value = "Error, El código de control debe ser numérico con dos dígitos.";
+    if (!expreCodControl.test(codControl) || codControl != codigosControl(codBanco, numSucursal, numCuenta)) {
+        document.formulario.error_codcon.value = "Error, El código de control debe ser numérico con dos dígitos, y válido";
         document.formulario.error_codcon.style = "visibility:visible";
         valido = false;
     } else {

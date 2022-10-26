@@ -148,7 +148,7 @@ function codigosControl(codBanco, numSucursal, numCuenta) {
                 carControl1 = 0;
             }
         }
-
+       
         //console.log("carControl1= " + carControl1);
         //-----------------Calcular numero3----------------------------------------------
         let numero3 = 0;
@@ -176,6 +176,8 @@ function codigosControl(codBanco, numSucursal, numCuenta) {
         return codControl;
     }
 }
+//console.log(codigosControl("0182","1329","7254097113"));
+//01821329797254097113
 
 //funcion calculoIbanEspaña -------------------------> cris
 function calculoIBANEspanya(nCuenta){
