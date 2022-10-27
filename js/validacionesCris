@@ -1,0 +1,78 @@
+//validacion numero telefono
+function validarTelefono(){
+let valido=true;
+let tel=document.formulario.telefono.value;
+let regExptel=/^[9|8|6|7]\d{9}$/;
+ 
+if (!regExptel.test(tel)) {
+  document.formulario.error_telefono.value = "Error, Debe tener 9 dígitos y comenzar por 9,8,6 o 7.";
+  document.formulario.error_telefono.style = "visibility:visible";
+  valido = false;
+} else {
+  document.formulario.error_telefono.style = "visibility:hidden";
+}
+return valido;
+}
+
+//validacion fecha
+function validarFecha(){
+let valido=true;
+let fecha=document.formulario.fecha.value;
+let regExpfecha=/^(\d{1,2})*(\/|-)*(\d{1,2})*(\/|-)*(\d{4})$/;
+//(\d{1,2})
+if (!regExpfecha.test(fecha)) {
+
+  document.formulario.error_fecha.value = "Error, La fecha es incorrecta. ";
+  document.formulario.error_fecha.style = "visibility:visible";
+  valido = false;
+} else {
+  document.formulario.error_fecha.style = "visibility:hidden";
+}
+return valido;
+}
+
+
+//validacion codigo de banco
+function validarCodBanco(){
+let valido=true;
+let banco=document.formulario.codbanco.value;
+let regExpbanco=/^\d{4}$/
+  if (!regExpbanco.test(banco)) {
+    document.formulario.error_banco.value = "Error, El código de banco debe tener cuatro digitos.";
+    document.formulario.error_banco.style = "visibility:visible";
+    valido = false;
+} else {
+    document.formulario.error_banco.style = "visibility:hidden";
+}
+return valido;
+}
+
+//validacion codigo de oficina
+function validarCodOficina(){
+  let valido=true;
+  let ofi=document.formulario.codoficina.value;
+  let regExpofi=/^\d{4}$/
+    if (!regExpofi.test(ofi)) {
+      document.formulario.error_oficina.value = "Error, El código de oficina debe tener cuatro digitos.";
+      document.formulario.error_oficina.style = "visibility:visible";
+      valido = false;
+  } else {
+      document.formulario.error_oficina.style = "visibility:hidden";
+  }
+  return valido;
+  }
+
+//validacion iban
+function validarIban(){
+  let valido=true;
+  let iban=document.formulario.iban.value;
+  let regExpiban = /([A-Za-z]{2}\d{2}[A-Za-z\d]{2,30})/;
+  if (!regExpiban.test(numFabrica)) {
+    document.formulario.error_iban.value = "Error, Debe comenzar por dos letras, continuar con 2 digitos y el resto deben ser letras y digitos .";
+    document.formulario.error_iban.style = "visibility:visible";
+    valido = false;
+} else {
+    document.formulario.error_iban.style = "visibility:hidden";
+}
+return valido;
+}
