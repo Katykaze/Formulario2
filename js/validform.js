@@ -25,6 +25,11 @@ function validForm() {
     valido = validarNumFabrica() && valido;
     /*Hasta aqui estuvo Jhon*/
     valido = validarChecBox() && valido;
+    valido= validarTelefono() && valido;
+    valido= validarFecha() && valido;
+    valido= validarCodBanco() && valido;
+    valido= validarCodOficina() && valido;
+    valido= validarIban() && valido;
 
     return valido;
 }
