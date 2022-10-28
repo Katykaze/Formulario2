@@ -18,12 +18,10 @@ function validForm() {
     valido = validar_direccion() && valido;
     valido = validar_localidad() && valido;
     valido = validar_codPostal() && valido;
-    /*Jhon estuvo aqui */
     valido = validarCodControl() && valido;
     valido = validarNumCuenta() && valido;
     valido = validarNumTrabajadores() && valido;
     valido = validarNumFabrica() && valido;
-    /*Hasta aqui estuvo Jhon*/
     valido = validarChecBox() && valido;
     valido = validarTelefono() && valido;
     valido = validarFecha() && valido;
