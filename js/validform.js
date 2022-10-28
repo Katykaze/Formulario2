@@ -5,6 +5,7 @@ function inicio() {
     document.formulario.onreset = limpiar;
 }
 function validForm() {
+    //document.formulario.error_razon.value =""
     //----llamando todas las funciones abajo y si se cumplen todas, enviar el formulario --> valido == true
     //[importante!!!!!! ---> invocar a las funciones de esta manera y en este orden, asi no se interrumpe la ejecucion de
     //las funciones y nos saltará siempre el error en caso de que los haya (ejemplo false = false && false --> dara false)
@@ -27,7 +28,7 @@ function validForm() {
     valido = validarFecha() && valido;
     valido = validarCodBanco() && valido;
     valido = validarCodOficina() && valido;
-    valido= validarIban() && valido;
+    valido = validarIban() && valido;
 
     return valido;
 }
@@ -49,7 +50,7 @@ function validarRazon() {
 function validarCodigoEmpresa() {
     let valido = true;
     let valorDelCampo = document.formulario.codempresa.value;
-    let regExp = /[a-zA-ZñÑ0-9]{5,10}/;
+    let regExp = /^[a-zA-ZñÑ0-9]{5,10}$/;
     if (!regExp.test(valorDelCampo)) {
         document.formulario.error_codempresa.value = "Error. Debe contener letra o dígitos.Tamaño comprendido entre 5 y 10";
         document.formulario.error_codempresa.style = "visibility: visible";
@@ -63,13 +64,13 @@ function validarCodigoEmpresa() {
 //validacion de si nifcif es correcto
 function validNif_Cif() {
     let n2 = "Se ha introducido un NIF erróneo.El carácter de control es erróneo ";
-    let n3="Se ha introducido un DNI,se ha pasado un número de entre 6 y 8 dígitos con un valor mínimo de 100000 ";
-    let c2="Se ha introducido un cif erróneo.El carácter de control es erróneo ";
+    let n3 = "Se ha introducido un DNI,se ha pasado un número de entre 6 y 8 dígitos con un valor mínimo de 100000 ";
+    let c2 = "Se ha introducido un cif erróneo.El carácter de control es erróneo ";
     let valido = true;
     let cifNif = document.formulario.cifnif.value;
     let resultado = nif_Cif(cifNif);
     //console.log(resultado);
-    if (resultado ==n2 || resultado == n3 || resultado == c2 || resultado == 0) {
+    if (resultado == n2 || resultado == n3 || resultado == c2 || resultado == 0) {
         document.formulario.error_nifcif.value = "Error,el nif  o cif no es correcto";
         document.formulario.error_nifcif.style = "visibility: visible";
         valido = false;
@@ -276,7 +277,7 @@ function validarNumFabrica() {
 function validarTelefono() {
     let valido = true;
     let tel = document.formulario.telefono.value;
-    let regExptel = /^[9|8|6|7]\d{8}$/;
+    let regExptel = /^[6-9][0-9]{8}$/;
 
     if (!regExptel.test(tel)) {
         document.formulario.error_telefono.value = "Error, Debe tener 9 dígitos y comenzar por 9,8,6 o 7.";
@@ -293,7 +294,7 @@ function limpiar() {
 function validarFecha() {
     let valido = true;
     let fecha = document.formulario.fecha.value;
-    let regExpfecha = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+    let regExpfecha = /^((31(\/|-|\.)(0?[13578]|1[02]))(\/|-|\.)|((29|30)(\/|-|\.)(0?[13-9]|1[0-2])\2))\d{4}$|^(29(\/|-|\.)0?2(\/|-|\.)((\d{2}(0[48]|[2468][048]|[13579][26])|(0[48]00)|(([2468][048]|[13579][26])00))))$|^(0?[1-9]|1\d|2[0-8])(\/|-|\.)((0?[1-9])|(1[0-2]))(\/|-|\.)(\d{4})$/;
     if (!regExpfecha.test(fecha)) {
 
         document.formulario.error_fecha.value = "Error, La fecha es incorrecta. ";
@@ -333,7 +334,7 @@ function validarCodOficina() {
 function validarIban() {
     let valido = true;
     let iban = document.formulario.iban.value;
-    let regExpiban = /([A-Za-z]{2}\d{2}[A-Za-z\d]{2,30})/;
+    let regExpiban = /^([A-Za-z]{2}\d{2}[A-Za-z\d]{2,30})$/;
     if (!regExpiban.test(iban)) {
         document.formulario.error_iban.value = "Error, Debe comenzar por dos letras, continuar con 2 digitos y el resto deben ser letras y digitos .";
         document.formulario.error_iban.style = "visibility:visible";
