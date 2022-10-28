@@ -25,10 +25,10 @@ function validForm() {
     valido = validarNumFabrica() && valido;
     /*Hasta aqui estuvo Jhon*/
     valido = validarChecBox() && valido;
-    valido= validarTelefono() && valido;
-    valido= validarFecha() && valido;
-    valido= validarCodBanco() && valido;
-    valido= validarCodOficina() && valido;
+    valido = validarTelefono() && valido;
+    valido = validarFecha() && valido;
+    valido = validarCodBanco() && valido;
+    valido = validarCodOficina() && valido;
     valido= validarIban() && valido;
 
     return valido;
@@ -37,7 +37,7 @@ function validForm() {
 function validarRazon() {
     let valido = true;
     let razonF = document.formulario.nombre.value;
-    let regExp = /^[a-zA-ZñÑ][a-zA-ZñÑºª\-\.0-9 ]*[a-zA-ZñÑ\.0-9]$/;
+    let regExp = /^[a-zA-ZñÑáéíóúü][a-zA-ZñÑºªáéíóúü\-\.0-9 ]*[a-zA-ZñÑáéíóúü\.0-9]$/;
     if (!regExp.test(razonF)) {
         document.formulario.error_razon.value = "Error. Debe empezar por una letra y terminar por letra dígito o punto. En su interior puede contener letras, dígitos y caracteres º ª - .";
         document.formulario.error_razon.style = "visibility: visible";
@@ -64,10 +64,14 @@ function validarCodigoEmpresa() {
 }
 //validacion de si nifcif es correcto
 function validNif_Cif() {
+    let n2 = "Se ha introducido un NIF erróneo.El carácter de control es erróneo ";
+    let n3="Se ha introducido un DNI,se ha pasado un número de entre 6 y 8 dígitos con un valor mínimo de 100000 ";
+    let c2="Se ha introducido un cif erróneo.El carácter de control es erróneo ";
     let valido = true;
     let cifNif = document.formulario.cifnif.value;
     let resultado = nif_Cif(cifNif);
-    if (resultado == "n2" || resultado == "n3" || resultado == "c2" || resultado == 0) {
+    //console.log(resultado);
+    if (resultado ==n2 || resultado == n3 || resultado == c2 || resultado == 0) {
         document.formulario.error_nifcif.value = "Error,el nif  o cif no es correcto";
         document.formulario.error_nifcif.style = "visibility: visible";
         valido = false;
@@ -76,7 +80,7 @@ function validNif_Cif() {
     }
     return valido;
 }
-//console.log(validNif_Cif("53909901V"));
+console.log(validNif_Cif("53909901V"));
 function botonSelect() {
     let valido = true;
     let radio = document.formulario.tipopersona.value;//nos devuelve un nodo con todos los tipopersona
@@ -128,12 +132,12 @@ function validarChecBox() {
     console.log(check);
     let counter = 0;
     for (let i = 0; i < check.length; i++) {
-        if(check[i].type == "checkbox"){
+        if (check[i].type == "checkbox") {
             if (check[i].checked) {
                 //console.log("----" + i);
                 counter++;
-            }           
-        }     
+            }
+        }
     }
     if (counter < 1) {
         document.formulario.error_sectores.value = "Error, debe elegir al menos una opcion";
@@ -151,7 +155,7 @@ function validarChecBox() {
 function validar_direccion() {
     let valido = true;
     let dir = document.formulario.direccion.value.trim();
-    let expregdir = /^[a-z](\w| |ª|º|\/|\.|\-)+\w$/i;
+    let expregdir = /^[a-zA-ZñÑáéíóúü][a-zA-ZñÑºªáéíóúü\-\.0-9 ]*[a-zA-ZñÑáéíóúü0-9]$/i;
     if (!expregdir.test(dir)) {
         document.formulario.error_direccion.value = "Error, la direccion está mal escrita";
         document.formulario.error_direccion.style = "visibility: visible";
@@ -212,7 +216,7 @@ function cambioCodPos() {
 }
 //----------------------    JHON    ----------------------------- //
 function validarCodControl() {
-    let valido = true;  
+    let valido = true;
     let codControl = document.formulario.codcontrol.value;
     let codBanco = document.formulario.codbanco.value;
     let numCuenta = document.formulario.numcuenta.value;
@@ -228,8 +232,8 @@ function validarCodControl() {
     return valido;
 }
 
-function validarNumCuenta(){
-    let valido = true;  
+function validarNumCuenta() {
+    let valido = true;
     let numCuenta = document.formulario.numcuenta.value;
     let expreNumCuenta = /^\d{10}$/;
     if (!expreNumCuenta.test(numCuenta)) {
@@ -242,8 +246,8 @@ function validarNumCuenta(){
     return valido;
 }
 
-function validarNumTrabajadores(){
-    let valido = true;  
+function validarNumTrabajadores() {
+    let valido = true;
     let numTrabajadores = document.formulario.numtrabajadores.value;
     let expreNumTrabajadores = /^((0{0,4}4[5-9])|(0{0,4}[5-9]\d)|(0{0,3}[1-9]\d{2})|(0{0,2}[1-9]\d{3})|(0?[1-9]\d{4})|([1-9]\d{5}))$/;
     if (!expreNumTrabajadores.test(numTrabajadores)) {
@@ -256,8 +260,8 @@ function validarNumTrabajadores(){
     return valido;
 }
 
-function validarNumFabrica(){
-    let valido = true;  
+function validarNumFabrica() {
+    let valido = true;
     let numFabrica = document.formulario.numfabrica.value;
     let expreNumFabrica = /^((0{0,3}[2-9])|(0{0,2}[1-9]\d)|(0{0,2}[1-9]\d{2})|(0?[1-9]\d{2})|([1-9]\d{3}))$/;
     if (!expreNumFabrica.test(numFabrica)) {
@@ -270,6 +274,75 @@ function validarNumFabrica(){
     return valido;
 }
 //----------------------    FIN JHON    ------------------------- //
-function limpiar(){
-   window.location.reload();
+//------------------------ejercicios Cris-------------
+function validarTelefono() {
+    let valido = true;
+    let tel = document.formulario.telefono.value;
+    let regExptel = /^[9|8|6|7]\d{8}$/;
+
+    if (!regExptel.test(tel)) {
+        document.formulario.error_telefono.value = "Error, Debe tener 9 dígitos y comenzar por 9,8,6 o 7.";
+        document.formulario.error_telefono.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_telefono.style = "visibility:hidden";
+    }
+    return valido;
+}
+function limpiar() {
+    window.location.reload();
+}
+function validarFecha() {
+    let valido = true;
+    let fecha = document.formulario.fecha.value;
+    let regExpfecha = /^(\d{1,2})*(\/|-)*(\d{1,2})*(\/|-)*(\d{4})$/;
+    //(\d{1,2})
+    if (!regExpfecha.test(fecha)) {
+
+        document.formulario.error_fecha.value = "Error, La fecha es incorrecta. ";
+        document.formulario.error_fecha.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_fecha.style = "visibility:hidden";
+    }
+    return valido;
+}
+function validarCodBanco() {
+    let valido = true;
+    let banco = document.formulario.codbanco.value;
+    let regExpbanco = /^\d{4}$/
+    if (!regExpbanco.test(banco)) {
+        document.formulario.error_banco.value = "Error, El código de banco debe tener cuatro digitos.";
+        document.formulario.error_banco.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_banco.style = "visibility:hidden";
+    }
+    return valido;
+}
+function validarCodOficina() {
+    let valido = true;
+    let ofi = document.formulario.codoficina.value;
+    let regExpofi = /^\d{4}$/
+    if (!regExpofi.test(ofi)) {
+        document.formulario.error_oficina.value = "Error, El código de oficina debe tener cuatro digitos.";
+        document.formulario.error_oficina.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_oficina.style = "visibility:hidden";
+    }
+    return valido;
+}
+function validarIban() {
+    let valido = true;
+    let iban = document.formulario.iban.value;
+    let regExpiban = /([A-Za-z]{2}\d{2}[A-Za-z\d]{2,30})/;
+    if (!regExpiban.test(iban)) {
+        document.formulario.error_iban.value = "Error, Debe comenzar por dos letras, continuar con 2 digitos y el resto deben ser letras y digitos .";
+        document.formulario.error_iban.style = "visibility:visible";
+        valido = false;
+    } else {
+        document.formulario.error_iban.style = "visibility:hidden";
+    }
+    return valido;
 }

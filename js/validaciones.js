@@ -36,6 +36,7 @@ function esNif(cadenaNif) {
 
     return 1;
 }
+//console.log(esNif("14011159M"));
 
 //funcion cif ----------------------> katy
 function esCif(cadenaCif) {
@@ -84,6 +85,7 @@ function esCif(cadenaCif) {
     }
     return 2; //cif erroneo o caracter de control erroneo
 }
+console.log(esCif("14011159M"));
 
 //funcion nif cif juntos -------------------------> katy
 function nif_Cif(cadena){
